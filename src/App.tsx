@@ -1,26 +1,19 @@
-import { useEffect, useState } from "react";
-import { generateCodeVerifier, generateCodeChallenge } from "./auth/pkce"
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Login from "./routes/Login";
+import Callback from "./routes/Callback";
 
 function App() {
-  const [codeChallenge, setCodeChallenge] = useState<string | null>(null);
 
-
-  useEffect(() => {
-    async function init() {
-        const codeVerifier = generateCodeVerifier();
-        const challenge = await generateCodeChallenge(codeVerifier);
-        setCodeChallenge(challenge);
-
-        console.log(codeVerifier, challenge);
-    }
-  
-    init();
-  }, [])
-  return (
-    <>
-      
-    </>
+   return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/callback" element={<Callback />} />
+      </Routes>
+    </BrowserRouter>
   )
 }
 
 export default App
+
+
