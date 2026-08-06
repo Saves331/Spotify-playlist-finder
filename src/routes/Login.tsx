@@ -36,7 +36,7 @@ function Login() {
 
 
   return (
-    <button onClick={() => handleLogin()}>Login</button>
+    <button className="p-1 m-4 border rounded-md" onClick={() => handleLogin()}>Login</button>
   )
 }
 
