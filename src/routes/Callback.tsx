@@ -1,8 +1,9 @@
 import { useEffect, useRef } from "react";
-import { useSearchParams } from "react-router-dom"
+import { useSearchParams, useNavigate } from "react-router-dom"
 
 
 function Callback() {
+    const navigate = useNavigate();
     const hasRun = useRef(false);
     const [searchParams] = useSearchParams();
     const code = searchParams.get("code");
@@ -37,8 +38,11 @@ function Callback() {
         });
 
         const data = await response.json();
+        localStorage.setItem('access_token', data.access_token)
         console.log("Data: ")
         console.log(data)
+
+        navigate("/")
     }
 
     useEffect(() => {
@@ -47,6 +51,8 @@ function Callback() {
         hasRun.current = true;
         exchangeCodeForToken()
     }, [])
+
+    
 
 
   return (
