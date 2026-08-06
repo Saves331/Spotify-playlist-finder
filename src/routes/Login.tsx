@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import {useState } from "react";
 import { generateCodeVerifier, generateCodeChallenge } from "../auth/pkce"
 
 function Login() {
