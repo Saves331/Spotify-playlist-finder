@@ -1,10 +1,11 @@
 import {useState } from "react";
 import { generateCodeVerifier, generateCodeChallenge } from "../auth/pkce"
+import type { Playlist } from "../types/spotify"
 
 function Login() {
 
       const [codeChallenge, setCodeChallenge] = useState<string | null>(null);
-
+      const [playlists, setPlaylists] = useState<Playlist[]>([])
 
 
     async function handleLogin() {
@@ -47,7 +48,12 @@ function Login() {
       const data = await response.json();
       console.log("Data: ")
       console.log(data)
+      setPlaylists(data.items)
+      
+      console.log("Playlisty:", playlists)
     }
+
+
   
 
 
@@ -58,6 +64,14 @@ function Login() {
     <>
     <button className="p-1 m-4 border rounded-md" onClick={() => handleLogin()}>Login</button>
     <button onClick={() => fetchPlaylists()}>Show Playlist</button>
+
+    <ul>
+      {playlists.map((playlist) => (
+        <li key={playlist.id}>
+          {playlist.name}
+        </li>
+      ))}
+    </ul>
     </>
   )
 }

@@ -23,3 +23,31 @@ interface Image {
     height: number,
     width: number
 }
+
+interface Owner {
+    id: string,
+    display_name: string,
+    external_urls: ExternalUrls,
+    uri: string
+}
+
+interface Item {
+    href: string,
+    total: number
+}
+
+interface ExternalUrls {
+    spotify: string
+}
+
+
+export interface Playlist {
+    description: string,
+    external_urls: ExternalUrls,
+    id: string,
+    images: Image[],
+    items: Item,
+    name: string,
+    owner: Owner,
+    type: string //playlist/album
+}
