@@ -15,7 +15,7 @@ function Search() {
         const params = new URLSearchParams({
             q: query,
             type: 'album',
-            limit: '1',
+            limit: '5',
         })
 
         
@@ -38,12 +38,12 @@ function Search() {
     }
 
   return (
-    <div>
+    <div className="w-full px-6">
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
         <button onClick={() => fetchAlbum()}>Search</button>
 
 
-      <ul>
+      <ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4">
         
          {albums.map((album) => (
                 <li key={album.id}>
