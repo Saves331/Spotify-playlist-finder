@@ -1,12 +1,13 @@
-interface Album {
+export interface Album {
     id: string,
     name: string,
     images: Image[],
     release_date: string,
-    artists: Artist[]
+    artists: Artist[],
+    total_tracks: number
 }
 
-interface Artist {
+export interface Artist {
     id: string,
     name: string
 }

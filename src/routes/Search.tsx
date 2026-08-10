@@ -1,15 +1,21 @@
 import { useState } from "react";
+import type { Album } from "../types/spotify"
+import AlbumCard from "../components/AlbumCard";
+
 
 function Search() {
 
     const [query, setQuery] = useState<string>('');
+    const [albums, setAlbums] = useState<Album[]>([]);
+   
 
     async function fetchAlbum() {
         const token = localStorage.getItem('access_token');
 
         const params = new URLSearchParams({
             q: query,
-            type: 'album'
+            type: 'album',
+            limit: '1',
         })
 
         
@@ -27,14 +33,26 @@ function Search() {
 
         const data = await response.json();
         console.log(data)
-        
+        setAlbums(data.albums.items)
+
     }
 
   return (
     <div>
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
         <button onClick={() => fetchAlbum()}>Search</button>
-    </div>
+
+
+      <ul>
+        
+         {albums.map((album) => (
+                <li key={album.id}>
+                    <AlbumCard album={album}></AlbumCard>
+                </li>
+        ))}   
+        </ul>
+
+   </div>
   )
 }
 
