@@ -4,7 +4,8 @@ export interface Album {
     images: Image[],
     release_date: string,
     artists: Artist[],
-    total_tracks: number
+    total_tracks: number,
+    external_urls: ExternalUrls
 }
 
 export interface Artist {

@@ -1,6 +1,7 @@
 import {useState } from "react";
 import { generateCodeVerifier, generateCodeChallenge } from "../auth/pkce"
 import type { Playlist } from "../types/spotify"
+import  PlaylistCard  from "../components/PlaylistCard";
 
 function Login() {
 
@@ -61,18 +62,18 @@ function Login() {
 
 
   return (
-    <>
+    <section className="p-6">
     <button className="p-1 m-4 border rounded-md" onClick={() => handleLogin()}>Login</button>
     <button onClick={() => fetchPlaylists()}>Show Playlist</button>
 
-    <ul>
+    <ul className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
       {playlists.map((playlist) => (
         <li key={playlist.id}>
-          {playlist.name}
+          <PlaylistCard playlist = {playlist}></PlaylistCard>
         </li>
       ))}
     </ul>
-    </>
+    </section>
   )
 }
 

@@ -38,7 +38,7 @@ function Search() {
     }
 
   return (
-    <div className="w-full px-6">
+    <div className="w-full p-6">
         <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
         <button onClick={() => fetchAlbum()}>Search</button>
 
