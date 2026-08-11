@@ -43,7 +43,7 @@ function Search() {
         <button onClick={() => fetchAlbum()}>Search</button>
 
 
-      <ul className="grid grid-cols-[repeat(auto-fill,minmax(150px,1fr))] gap-4">
+      <ul className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
         
          {albums.map((album) => (
                 <li key={album.id}>

@@ -62,9 +62,18 @@ function Login() {
 
 
   return (
-    <section className="p-6">
-    <button className="p-1 m-4 border rounded-md" onClick={() => handleLogin()}>Login</button>
-    <button onClick={() => fetchPlaylists()}>Show Playlist</button>
+    <section className="pb-6 px-6 bg-bg">
+
+      <section className="flex justify-end gap-3 py-6">
+         <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
+               transition-colors hover:bg-surface-hover hover:text-text-primary
+               focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => fetchPlaylists()}>Show Playlists</button>
+
+         <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
+               transition-colors hover:bg-surface-hover hover:text-text-primary
+               focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => handleLogin()}>Login</button>
+      </section>
+  
 
     <ul className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
       {playlists.map((playlist) => (
