@@ -4,11 +4,13 @@ interface PlaylistCardProps {
     playlist: Playlist;
 }
 
+
 function PlaylistCard({playlist} : PlaylistCardProps) {
+    
   return (
      <article className="group w-full cursor-pointer">
-        <button type="button"
-                className="w-full rounded-lg bg-surface p-3 text-left transition-all
+        <a      href={playlist.external_urls.spotify} target="_blank"
+                className="inline-block w-full rounded-lg bg-surface p-3 text-left transition-all
                            hover:bg-surface-hover
                            focus-visible:outline-2
                            focus-visible:outline-accent focus-visible:outline-offset-2
@@ -19,7 +21,6 @@ function PlaylistCard({playlist} : PlaylistCardProps) {
                        group-hover:scale-[1.03]"/>
             </div>
             
-
             <div className="mt-3 space-y-1">
                 <h2 className="line-clamp-1 font-semibold text-text-primary">{playlist.name}</h2>
                 <p className="line-clamp-1 text-sm text-text-secondary">{playlist.owner.display_name}</p>
@@ -28,8 +29,7 @@ function PlaylistCard({playlist} : PlaylistCardProps) {
                   <span>{playlist.items.total} tracks</span>
                 </p>
             </div>
-        
-        </button>
+        </a>
     </article>
   )
 }

@@ -9,17 +9,10 @@ function AlbumCard({album} : AlbumCardProps) {
     const releaseYear = album.release_date.slice(0,4);
     const artistNames = album.artists.map((artist) => artist.name).join(", ");
 
-    function transferToAlbum() {
-        const AlbumUrl = album.external_urls.spotify;
-
-       window.open(AlbumUrl, "_blank")
-    }
-
   return (
     <article className="group w-full cursor-pointer">
-        <button type="button"
-                onClick={() => transferToAlbum()} 
-                className="w-full rounded-lg bg-surface p-3 text-left transition-all
+        <a      href={album.external_urls.spotify}
+                className="inline-block w-full rounded-lg bg-surface p-3 text-left transition-all
                            hover:bg-surface-hover
                            focus-visible:outline-2
                            focus-visible:outline-accent focus-visible:outline-offset-2
@@ -30,7 +23,6 @@ function AlbumCard({album} : AlbumCardProps) {
                        group-hover:scale-[1.03]"/>
             </div>
             
-
             <div className="mt-3 space-y-1">
                 <h2 className="line-clamp-1 font-semibold text-text-primary">{album.name}</h2>
                 <p className="line-clamp-1 text-sm text-text-secondary">{artistNames}</p>
@@ -42,7 +34,7 @@ function AlbumCard({album} : AlbumCardProps) {
                 </p>
             </div>
         
-        </button>
+        </a>
     </article>
   )
 }
