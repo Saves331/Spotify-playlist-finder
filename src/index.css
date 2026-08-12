@@ -10,3 +10,11 @@
 }
 
 
+html, body {
+    background-color: var(--color-bg); /* alebo aká premenná to u teba je */
+    min-height: 100%;
+}
+
+body {
+    @apply bg-bg min-h-screen;
+}

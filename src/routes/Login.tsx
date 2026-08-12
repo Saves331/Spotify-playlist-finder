@@ -62,28 +62,40 @@ function Login() {
 
 
   return (
-    <section className="pb-6 px-6 bg-bg">
+    <section className="pb-6 px-6 bg-bg min-h-screen flex flex-col">
 
       <section className="flex justify-end gap-3 py-6">
-         <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
-               transition-colors hover:bg-surface-hover hover:text-text-primary
-               focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => fetchPlaylists()}>Show Playlists</button>
+        <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
+                  transition-colors hover:bg-surface-hover hover:text-text-primary
+                  focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => fetchPlaylists()}>Show Playlists</button>
 
-         <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
-               transition-colors hover:bg-surface-hover hover:text-text-primary
-               focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => handleLogin()}>Login</button>
+            <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
+                  transition-colors hover:bg-surface-hover hover:text-text-primary
+                  focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => handleLogin()}>Login</button>
       </section>
-  
 
-    <ul className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
-      {playlists.map((playlist) => (
-        <li key={playlist.id}>
-          <PlaylistCard playlist = {playlist}></PlaylistCard>
-        </li>
-      ))}
-    </ul>
+      <h1 className="text-3xl font-bold text-text-primary mb-6">Your Playlists</h1>
+
+      {playlists.length === 0 ? (
+        <div className="flex-1 flex items-center justify-center">
+          <p className="text-text-primary text-3xl">
+            No playlists loaded yet. Click "Show Playlists" to load your library.
+          </p>
+        </div>
+      ) : (
+        <ul className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
+          {playlists.map((playlist) => (
+            <li key={playlist.id}>
+              <PlaylistCard playlist={playlist}></PlaylistCard>
+            </li>
+          ))}
+        </ul>
+      )}
+
     </section>
   )
 }
 
 export default Login
+
+
