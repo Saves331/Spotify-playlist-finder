@@ -1,12 +1,13 @@
-import {useState } from "react";
+import {useEffect, useState } from "react";
 import { generateCodeVerifier, generateCodeChallenge } from "../auth/pkce"
-import type { Playlist } from "../types/spotify"
+import type { Playlist, UserProfile } from "../types/spotify"
 import  PlaylistCard  from "../components/PlaylistCard";
 
 function Login() {
 
       const [codeChallenge, setCodeChallenge] = useState<string | null>(null);
       const [playlists, setPlaylists] = useState<Playlist[]>([])
+      const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
 
     async function handleLogin() {
@@ -54,7 +55,34 @@ function Login() {
       console.log("Playlisty:", playlists)
     }
 
+    
+    useEffect(() => {
+      async function fetchProfile() {
+        const token = localStorage.getItem('access_token');
 
+        if(token === null) {
+          return console.error("user not logged");
+        }
+
+        const response = await fetch("https://api.spotify.com/v1/me", {
+          method: "GET",
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+
+        const data = await response.json()
+
+
+        console.log("Profile: ")
+        console.log(data)
+
+        setUserProfile(prev => prev(data))
+        console.log(userProfile)
+      }
+
+      fetchProfile()
+    }, [])
   
 
 

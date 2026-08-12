@@ -53,3 +53,10 @@ export interface Playlist {
     owner: Owner,
     type: string //playlist/album
 }
+
+export interface UserProfile {
+    id: string,
+    display_name: string,
+    external_urls:ExternalUrls,
+    images: Image[]
+}
