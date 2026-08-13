@@ -18,3 +18,11 @@ html, body {
 body {
     @apply bg-bg min-h-screen;
 }
+
+@layer components {
+    .btn-primary {
+        @apply cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
+               transition-colors hover:bg-surface-hover hover:text-text-primary
+               focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2;
+    }
+}

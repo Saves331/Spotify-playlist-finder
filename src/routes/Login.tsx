@@ -1,5 +1,5 @@
 import {useEffect, useState } from "react";
-import { generateCodeVerifier, generateCodeChallenge } from "../auth/pkce"
+import { generateCodeVerifier, generateCodeChallenge, refreshAccessToken } from "../auth/pkce"
 import type { Playlist, UserProfile } from "../types/spotify"
 import  PlaylistCard  from "../components/PlaylistCard";
 
@@ -64,12 +64,31 @@ function Login() {
           return console.error("user not logged");
         }
 
-        const response = await fetch("https://api.spotify.com/v1/me", {
+
+        let response = await fetch("https://api.spotify.com/v1/me", {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`
           }
         });
+
+        if(response.status === 401) {
+          await refreshAccessToken();
+          const newToken = localStorage.getItem('access_token')
+          response = await fetch("https://api.spotify.com/v1/me", {
+            method: "GET",
+            headers: {
+              "Authorization": `Bearer ${newToken}`
+          }
+        });
+        };
+
+        if (!response.ok) {
+            console.error("Failed to fetch profile, status:", response.status);
+            localStorage.removeItem('access_token');
+            setUserProfile(null);
+            return;
+        }
 
         const data = await response.json()
 
@@ -92,14 +111,23 @@ function Login() {
   return (
     <section className="pb-6 px-6 bg-bg min-h-screen flex flex-col">
 
-      <section className="flex justify-end gap-3 py-6">
-        <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
-                  transition-colors hover:bg-surface-hover hover:text-text-primary
-                  focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => fetchPlaylists()}>Show Playlists</button>
+      <section className="flex justify-end py-6">
 
-           {userProfile ? (<img className="rounded-full" src={userProfile.images[1].url}/>) : (<button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
-                  transition-colors hover:bg-surface-hover hover:text-text-primary
-                  focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => handleLogin()}>Login</button>)} 
+        {userProfile ? (
+                        <div className="flex gap-3">
+                            <button className="btn-primary" onClick={() => fetchPlaylists()}>Show Playlists</button>
+                            <img 
+                                  className="rounded-full object-cover" 
+                                  src={userProfile.images[1].url} 
+                                  alt={userProfile.display_name}
+                              />
+                        </div>
+                      ) : (
+                        <div className="flex gap-3">
+                          <button className="btn-primary" onClick={() => handleLogin()}>Show Playlists</button>
+                          <button className="btn-primary" onClick={() => handleLogin()}>Login</button>
+                        </div>
+                      )}
       </section>
 
       <h1 className="text-3xl font-bold text-text-primary mb-6">Your Playlists</h1>
