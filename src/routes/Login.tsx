@@ -77,7 +77,7 @@ function Login() {
         console.log("Profile: ")
         console.log(data)
 
-        setUserProfile(prev => prev(data))
+        setUserProfile(data)
         console.log(userProfile)
       }
 
@@ -97,9 +97,9 @@ function Login() {
                   transition-colors hover:bg-surface-hover hover:text-text-primary
                   focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => fetchPlaylists()}>Show Playlists</button>
 
-            <button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
+           {userProfile ? (<img className="rounded-full" src={userProfile.images[1].url}/>) : (<button className="cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
                   transition-colors hover:bg-surface-hover hover:text-text-primary
-                  focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => handleLogin()}>Login</button>
+                  focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2" onClick={() => handleLogin()}>Login</button>)} 
       </section>
 
       <h1 className="text-3xl font-bold text-text-primary mb-6">Your Playlists</h1>
