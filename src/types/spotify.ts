@@ -13,12 +13,12 @@ export interface Artist {
     name: string
 }
 
-interface Track {
-    id: string,
-    name: string,
-    duration_ms: number,
-    track_number: number
-}
+/*interface Track {
+id: string,
+name: string,
+duration_ms: number,
+track_number: number
+}*/
 
 interface Image {
     url: string,

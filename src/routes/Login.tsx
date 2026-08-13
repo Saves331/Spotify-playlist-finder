@@ -5,7 +5,6 @@ import  PlaylistCard  from "../components/PlaylistCard";
 
 function Login() {
 
-      const [codeChallenge, setCodeChallenge] = useState<string | null>(null);
       const [playlists, setPlaylists] = useState<Playlist[]>([])
       const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
 
@@ -14,7 +13,6 @@ function Login() {
         const codeVerifier = generateCodeVerifier();
         localStorage.setItem('code_verifier', codeVerifier)
         const challenge = await generateCodeChallenge(codeVerifier);
-        setCodeChallenge(challenge);
 
         console.log(codeVerifier, challenge);
 
