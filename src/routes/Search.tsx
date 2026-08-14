@@ -1,6 +1,8 @@
 import { useState } from "react";
 import type { Album } from "../types/spotify"
 import AlbumCard from "../components/AlbumCard";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 
 function Search() {
@@ -14,11 +16,8 @@ function Search() {
 
         const params = new URLSearchParams({
             q: query,
-            type: 'album',
-            limit: '5',
+            type: 'album'
         })
-
-        
 
         if(token === null) {
             return console.error("Token null value error")
@@ -39,9 +38,13 @@ function Search() {
 
   return (
     <div className="w-full p-6">
-        <input type="text" value={query} onChange={(e) => setQuery(e.target.value)} />
-        <button onClick={() => fetchAlbum()}>Search</button>
-
+        <div className="relative flex-1 min-w-0 max-w-225 m-auto py-4 group">
+            
+            <FontAwesomeIcon icon={faMagnifyingGlass} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary text-3xl transition-colors group-hover:text-text-primary group-focus-within:text-text-primary"/>
+            <input className="input-primary text-3xl w-full pl-15" type="text" onKeyDown={(e) => {if(e.key === "Enter"){fetchAlbum()}}} value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search Albums"/>
+            
+        </div>
+        <button className="btn-primary hidden" onClick={() => fetchAlbum()}>Search</button>
 
       <ul className="grid grid-cols-2 sm:grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4">
         
