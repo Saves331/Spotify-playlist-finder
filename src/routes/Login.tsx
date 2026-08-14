@@ -2,12 +2,15 @@ import {useEffect, useState } from "react";
 import { generateCodeVerifier, generateCodeChallenge, refreshAccessToken } from "../auth/pkce"
 import type { Playlist, UserProfile } from "../types/spotify"
 import  PlaylistCard  from "../components/PlaylistCard";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+
 
 function Login() {
 
       const [playlists, setPlaylists] = useState<Playlist[]>([])
       const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
-
+      const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
 
     async function handleLogin() {
         const codeVerifier = generateCodeVerifier();
@@ -102,23 +105,53 @@ function Login() {
     }, [])
   
 
+    function handleLogout() {
 
+    }
+
+    function toggle() {
+
+    }
 
 
 
   return (
     <section className="pb-6 px-6 bg-bg min-h-screen flex flex-col">
 
-      <section className="flex justify-end py-6">
+      <section className="flex justify-end py-6 mr-1">
 
         {userProfile ? (
-                        <div className="flex gap-3">
-                            <button className="btn-primary" onClick={() => fetchPlaylists()}>Show Playlists</button>
-                            <img 
-                                  className="rounded-full object-cover" 
-                                  src={userProfile.images[1].url} 
-                                  alt={userProfile.display_name}
-                              />
+                        <div className="flex gap-5">
+                                                          <button className="btn-primary" onClick={() => fetchPlaylists()}>Show Playlists</button>
+                              <div className="relative flex items-center">
+                                  <button 
+                                      className="cursor-pointer rounded-full ring-2 ring-transparent hover:ring-accent transition-all"
+                                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                  >
+                                      <img 
+                                          className="rounded-full object-cover" 
+                                          src={userProfile.images[1].url} 
+                                          alt={userProfile.display_name}
+                                      />
+                                  </button>
+
+                                  {isDropdownOpen ? (
+                                      <ul className="absolute top-20 right-0 w-48 rounded-lg bg-surface border border-white/10 shadow-lg py-2 text-text-primary z-10">
+                                          <li>
+                                              <button className="w-full text-left px-4 py-2.5 hover:bg-surface-hover transition-colors cursor-pointer flex items-center gap-2">
+                                                  <FontAwesomeIcon icon={faUser} className="text-text-secondary" />
+                                                  Spotify Profile
+                                              </button>
+                                          </li>
+                                          <li>
+                                              <button className="w-full text-left px-4 py-2.5 hover:bg-surface-hover transition-colors cursor-pointer flex items-center gap-2 text-red-400">
+                                                  <FontAwesomeIcon icon={faRightFromBracket} />
+                                                  Logout
+                                              </button>
+                                          </li>
+                                      </ul>
+                                  ) : null}
+                              </div>
                         </div>
                       ) : (
                         <div className="flex gap-3">
