@@ -106,11 +106,9 @@ function Login() {
   
 
     function handleLogout() {
-
-    }
-
-    function toggle() {
-
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('refresh_token')
+      setUserProfile(null)
     }
 
 
@@ -144,7 +142,7 @@ function Login() {
                                               </button>
                                           </li>
                                           <li>
-                                              <button className="w-full text-left px-4 py-2.5 hover:bg-surface-hover transition-colors cursor-pointer flex items-center gap-2 text-red-400">
+                                              <button onClick={handleLogout} className="w-full text-left px-4 py-2.5 hover:bg-surface-hover transition-colors cursor-pointer flex items-center gap-2 text-red-400">
                                                   <FontAwesomeIcon icon={faRightFromBracket} />
                                                   Logout
                                               </button>
