@@ -1,8 +1,9 @@
 import { useState } from "react";
-import type { Album } from "../types/spotify"
+import type { Album } from "../types/spotify";
 import AlbumCard from "../components/AlbumCard";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Profile from "../components/Profile";
 
 
 function Search() {
@@ -40,7 +41,7 @@ function Search() {
     <div className="w-full p-6">
 
         <div>
-            
+            <Profile></Profile>
         </div>
 
         <div className="relative flex-1 min-w-0 max-w-225 m-auto py-4 group">

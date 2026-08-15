@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom"
+import { useAuth } from "../context/AuthContext";
 
 
 function Callback() {
+    const { fetchProfile } = useAuth()
     const navigate = useNavigate();
     const hasRun = useRef(false);
     const [searchParams] = useSearchParams();
@@ -43,6 +45,7 @@ function Callback() {
         console.log("Data: ")
         console.log(data)
 
+        await fetchProfile()
         navigate("/")
     }
 
@@ -50,7 +53,6 @@ function Callback() {
 
     useEffect(() => {
         if(hasRun.current) return;
-
         hasRun.current = true;
         exchangeCodeForToken()
     }, [])
