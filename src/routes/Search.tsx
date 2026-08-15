@@ -38,6 +38,11 @@ function Search() {
 
   return (
     <div className="w-full p-6">
+
+        <div>
+            
+        </div>
+
         <div className="relative flex-1 min-w-0 max-w-225 m-auto py-4 group">
             
             <FontAwesomeIcon icon={faMagnifyingGlass} className="absolute left-4 top-1/2 -translate-y-1/2 text-text-secondary text-3xl transition-colors group-hover:text-text-primary group-focus-within:text-text-primary"/>

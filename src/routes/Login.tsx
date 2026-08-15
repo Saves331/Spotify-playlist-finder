@@ -106,9 +106,9 @@ function Login() {
   
 
     function handleLogout() {
-      localStorage.removeItem('access_token')
-      localStorage.removeItem('refresh_token')
-      setUserProfile(null)
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      window.location.reload();
     }
 
 

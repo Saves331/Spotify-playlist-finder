@@ -11,7 +11,7 @@ function AlbumCard({album} : AlbumCardProps) {
 
   return (
     <article className="group w-full cursor-pointer">
-        <a      href={album.external_urls.spotify}
+        <a      href={album.external_urls.spotify} target="_blank" rel="noopener noreferrer"
                 className="inline-block w-full rounded-lg bg-surface p-3 text-left transition-all
                            hover:bg-surface-hover
                            focus-visible:outline-2
