@@ -43,11 +43,7 @@ function Login() {
       });
 
       const data = await response.json();
-      console.log("Data: ")
-      console.log(data)
       setPlaylists(data.items)
-      
-      console.log("Playlisty:", playlists)
     }
 
   

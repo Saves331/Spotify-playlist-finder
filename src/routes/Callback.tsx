@@ -10,8 +10,7 @@ function Callback() {
     const [searchParams] = useSearchParams();
     const code = searchParams.get("code");
 
-    console.log(code)
-    console.log("log po code")
+  
 
   
 
@@ -42,8 +41,6 @@ function Callback() {
         const data = await response.json();
         localStorage.setItem('access_token', data.access_token)
         localStorage.setItem('refresh_token', data.refresh_token)
-        console.log("Data: ")
-        console.log(data)
 
         await fetchProfile()
         navigate("/")
