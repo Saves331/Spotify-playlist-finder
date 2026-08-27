@@ -9,6 +9,7 @@ function Callback() {
     const hasRun = useRef(false);
     const [searchParams] = useSearchParams();
     const code = searchParams.get("code");
+    const redirectUri = `${window.location.origin}/callback`;
 
   
 
@@ -25,7 +26,7 @@ function Callback() {
          const params = new URLSearchParams({
               grant_type: "authorization_code",
               client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
-              redirect_uri: "http://127.0.0.1:5173/callback",
+              redirect_uri:redirectUri,
               code_verifier:verifier,
               code
           });

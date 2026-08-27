@@ -15,11 +15,12 @@ function Login() {
         const codeVerifier = generateCodeVerifier();
         localStorage.setItem('code_verifier', codeVerifier)
         const challenge = await generateCodeChallenge(codeVerifier);
+        const redirectUri = `${window.location.origin}/callback`;
 
         const params = new URLSearchParams({
               client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
               response_type: "code",
-              redirect_uri: "http://127.0.0.1:5173/callback",
+              redirect_uri: redirectUri,
               code_challenge_method: "S256",
               code_challenge: challenge,
               scope: "playlist-read-private"
