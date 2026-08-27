@@ -17,6 +17,8 @@ function Login() {
         const challenge = await generateCodeChallenge(codeVerifier);
         const redirectUri = `${window.location.origin}/callback`;
 
+        console.log("Redirect URI:", redirectUri);
+
         const params = new URLSearchParams({
               client_id: import.meta.env.VITE_SPOTIFY_CLIENT_ID,
               response_type: "code",
