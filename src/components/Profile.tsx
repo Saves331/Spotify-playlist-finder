@@ -29,14 +29,14 @@ function Profile() {
                                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                                   >
                                       <img 
-                                          className="rounded-full object-cover" 
+                                          className="rounded-full object-cover w-12 h-12" 
                                           src={userProfile.images[1].url} 
                                           alt={userProfile.display_name}
                                       />
                                   </button>
 
                                   {isDropdownOpen ? (
-                                      <ul className="absolute top-20 right-0 w-48 rounded-lg bg-surface border border-white/10 shadow-lg py-2 text-text-primary z-10">
+                                     <ul className="absolute top-full mt-2 right-0 w-48 rounded-lg bg-surface border border-white/10 shadow-lg py-2 text-text-primary z-10">
                                           <li>
                                               <a href={userProfile.external_urls.spotify} target="_blank" className="w-full text-left px-4 py-2.5 hover:bg-surface-hover transition-colors cursor-pointer flex items-center gap-2">
                                                   <FontAwesomeIcon icon={faUser} className="text-text-secondary" />

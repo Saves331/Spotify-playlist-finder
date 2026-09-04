@@ -4,6 +4,7 @@ import type { Playlist } from "../types/spotify";
 import  PlaylistCard  from "../components/PlaylistCard";
 import Profile from "../components/Profile";
 import { useAuth } from "../context/AuthContext"
+import Header from "../components/Header";
 
 
 function Login() {
@@ -54,20 +55,19 @@ function Login() {
   return (
     <section className="pb-6 px-6 bg-bg min-h-screen flex flex-col">
 
-      <section className="flex justify-end py-6 mr-1">
-
-        {userProfile ? (
-                        <div className="flex gap-5">
-                              <button className="btn-primary" onClick={() => fetchPlaylists()}>Show Playlists</button>
-                              <Profile></Profile>
-                        </div>
-                      ) : (
-                        <div className="flex gap-3">
-                          <button className="btn-primary" onClick={() => handleLogin()}>Show Playlists</button>
-                          <button className="btn-primary" onClick={() => handleLogin()}>Login</button>
-                        </div>
-                      )}
-      </section>
+          <Header>
+          {userProfile ? (
+              <>
+                  <button className="btn-nav" onClick={() => fetchPlaylists()}>Show Playlists</button>
+                  <Profile />
+              </>
+          ) : (
+              <>
+                  <button className="btn-nav" onClick={() => handleLogin()}>Show Playlists</button>
+                  <button className="btn-nav" onClick={() => handleLogin()}>Login</button>
+              </>
+          )}
+      </Header>
 
       <h1 className="text-3xl font-bold text-text-primary mb-6">Your Playlists</h1>
 

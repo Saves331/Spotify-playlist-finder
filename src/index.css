@@ -20,9 +20,15 @@ body {
 }
 
 @layer components {
-    .btn-primary {
+     .btn-primary {
         @apply cursor-pointer rounded-lg border-2 border-accent bg-accent px-5 py-2.5 font-semibold text-bg text-lg
                transition-colors hover:bg-surface-hover hover:text-text-primary
+               focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2;
+    }
+
+    .btn-nav {
+        @apply cursor-pointer flex items-center gap-2 px-4 py-2 rounded-lg font-semibold text-text-secondary
+               transition-colors hover:text-text-primary hover:bg-surface-hover
                focus-visible:outline-2 focus-visible:outline-accent focus-visible:outline-offset-2;
     }
 

@@ -4,6 +4,7 @@ import AlbumCard from "../components/AlbumCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Profile from "../components/Profile";
+import Header from "../components/Header";
 
 
 function Search() {
@@ -38,11 +39,11 @@ function Search() {
     }
 
   return (
-    <div className="w-full p-6">
+    <div className="w-full p-6 pt-0">
 
-        <div>
-            <Profile></Profile>
-        </div>
+        <Header>
+            <Profile />
+        </Header>
 
         <div className="relative flex-1 min-w-0 max-w-225 m-auto py-4 group">
             
